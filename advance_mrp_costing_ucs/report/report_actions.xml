@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- 1. BOM Material And Overhead Cost Report -->
+    <record id="action_report_bom_overhead" model="ir.actions.report">
+        <field name="name">BOM Material &amp; Overhead Cost</field>
+        <field name="model">mrp.bom</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">advance_mrp_costing_ucs.report_bom_overhead</field>
+        <field name="report_file">advance_mrp_costing_ucs.report_bom_overhead</field>
+        <field name="print_report_name">'BOM_Cost_' + object.display_name</field>
+        <field name="binding_model_id" ref="mrp.model_mrp_bom"/>
+        <field name="binding_type">report</field>
+    </record>
+
+    <!-- 2. MRP Material & Overhead Cost Report -->
+    <record id="action_report_mrp_overhead" model="ir.actions.report">
+        <field name="name">MRP Material &amp; Overhead Cost</field>
+        <field name="model">mrp.production</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">advance_mrp_costing_ucs.report_mrp_overhead</field>
+        <field name="report_file">advance_mrp_costing_ucs.report_mrp_overhead</field>
+        <field name="print_report_name">'MRP_Cost_' + object.name</field>
+        <field name="binding_model_id" ref="mrp.model_mrp_production"/>
+        <field name="binding_type">report</field>
+    </record>
+
+    <!-- 3. MRP Deviation Report -->
+    <record id="action_report_mrp_deviation" model="ir.actions.report">
+        <field name="name">MRP Deviation Report</field>
+        <field name="model">mrp.production</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">advance_mrp_costing_ucs.report_mrp_deviation</field>
+        <field name="report_file">advance_mrp_costing_ucs.report_mrp_deviation</field>
+        <field name="print_report_name">'MRP_Deviation_' + object.name</field>
+        <field name="binding_model_id" ref="mrp.model_mrp_production"/>
+        <field name="binding_type">report</field>
+    </record>
+
+    <!-- 4. MRP Estimate Cost Report -->
+    <record id="action_report_mrp_estimate_cost" model="ir.actions.report">
+        <field name="name">MRP Estimate Cost Report</field>
+        <field name="model">mrp.production</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">advance_mrp_costing_ucs.report_mrp_estimate_cost</field>
+        <field name="report_file">advance_mrp_costing_ucs.report_mrp_estimate_cost</field>
+        <field name="print_report_name">'MRP_Estimate_' + object.name</field>
+        <field name="binding_model_id" ref="mrp.model_mrp_production"/>
+        <field name="binding_type">report</field>
+    </record>
+
+    <!-- 5. Kit Delivery Slip Report -->
+    <record id="action_report_kit_delivery_slip" model="ir.actions.report">
+        <field name="name">Kit Delivery Slip</field>
+        <field name="model">stock.picking</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">advance_mrp_costing_ucs.report_kit_delivery</field>
+        <field name="report_file">advance_mrp_costing_ucs.report_kit_delivery</field>
+        <field name="print_report_name">'Kit_Delivery_' + object.name</field>
+        <field name="binding_model_id" ref="stock.model_stock_picking"/>
+        <field name="binding_type">report</field>
+    </record>
+</odoo>

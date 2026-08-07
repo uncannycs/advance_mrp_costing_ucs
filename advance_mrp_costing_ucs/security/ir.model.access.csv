@@ -1,0 +1,8 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_mrp_overhead_type_user,mrp.overhead.type.user,model_mrp_overhead_type,advance_mrp_costing_ucs.group_mrp_extra_cost_user,1,0,0,0
+access_mrp_overhead_type_manager,mrp.overhead.type.manager,model_mrp_overhead_type,advance_mrp_costing_ucs.group_mrp_extra_cost_manager,1,1,1,1
+access_mrp_bom_overhead_line_user,mrp.bom.overhead.line.user,model_mrp_bom_overhead_line,advance_mrp_costing_ucs.group_mrp_extra_cost_user,1,1,1,1
+access_mrp_production_overhead_line_user,mrp.production.overhead.line.user,model_mrp_production_overhead_line,advance_mrp_costing_ucs.group_mrp_extra_cost_user,1,1,1,1
+access_mrp_unbuild_overhead_line_user,mrp.unbuild.overhead.line.user,model_mrp_unbuild_overhead_line,advance_mrp_costing_ucs.group_mrp_extra_cost_user,1,1,1,1
+access_stock_kit_picking_line_user,stock.kit.picking.line.user,model_stock_kit_picking_line,advance_mrp_costing_ucs.group_mrp_extra_cost_user,1,1,1,1
+access_stock_kit_qty_wizard_user,stock.kit.qty.wizard.user,model_stock_kit_qty_wizard,advance_mrp_costing_ucs.group_mrp_extra_cost_user,1,1,1,1

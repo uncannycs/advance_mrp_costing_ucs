@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="report_mrp_overhead">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="doc">
+                <t t-call="web.external_layout">
+                    <div class="page">
+                        <h2 class="text-center mb-4">MRP Material &amp; Overhead Cost Report</h2>
+                        
+                        <div class="row mb-3">
+                            <div class="col-6">
+                                <strong>MO Number:</strong> <span t-field="doc.name"/><br/>
+                                <strong>Finished Product:</strong> <span t-field="doc.product_id.display_name"/><br/>
+                                <strong>State:</strong> <span t-field="doc.state"/>
+                            </div>
+                            <div class="col-6 text-end">
+                                <strong>Planned Material Cost:</strong> <span t-field="doc.total_planned_material_cost" t-options='{"widget": "monetary", "display_currency": doc.company_id.currency_id}'/><br/>
+                                <strong>Actual Material Cost:</strong> <span t-field="doc.total_actual_material_cost" t-options='{"widget": "monetary", "display_currency": doc.company_id.currency_id}'/><br/>
+                                <strong>Planned Overhead:</strong> <span t-field="doc.total_planned_overhead_cost" t-options='{"widget": "monetary", "display_currency": doc.company_id.currency_id}'/><br/>
+                                <strong>Actual Overhead:</strong> <span t-field="doc.total_actual_overhead_cost" t-options='{"widget": "monetary", "display_currency": doc.company_id.currency_id}'/><br/>
+                                <h4><strong>Total Production Cost:</strong> <span t-field="doc.total_actual_production_cost" t-options='{"widget": "monetary", "display_currency": doc.company_id.currency_id}'/></h4>
+                            </div>
+                        </div>
+
+                        <h4 class="mt-4">Manufacturing Overhead Items</h4>
+                        <table class="table table-bordered table-sm">
+                            <thead>
+                                <tr class="table-light">
+                                    <th>Overhead Product</th>
+                                    <th>Type</th>
+                                    <th>Planned Cost</th>
+                                    <th>Actual Cost</th>
+                                    <th class="text-end">Variance</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <t t-foreach="doc.overhead_line_ids" t-as="line">
+                                    <tr>
+                                        <td><span t-field="line.product_id.display_name"/></td>
+                                        <td><span t-field="line.overhead_type_id.name"/></td>
+                                        <td><span t-field="line.planned_cost" t-options='{"widget": "monetary", "display_currency": doc.company_id.currency_id}'/></td>
+                                        <td><span t-field="line.actual_cost" t-options='{"widget": "monetary", "display_currency": doc.company_id.currency_id}'/></td>
+                                        <td class="text-end"><span t-field="line.cost_deviation" t-options='{"widget": "monetary", "display_currency": doc.company_id.currency_id}'/></td>
+                                    </tr>
+                                </t>
+                            </tbody>
+                        </table>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+</odoo>

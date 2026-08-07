@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- BOM Overhead Line List View -->
+    <record id="view_mrp_bom_overhead_line_tree" model="ir.ui.view">
+        <field name="name">mrp.bom.overhead.line.list</field>
+        <field name="model">mrp.bom.overhead.line</field>
+        <field name="arch" type="xml">
+            <tree string="BOM Overhead Details">
+                <field name="bom_id"/>
+                <field name="product_id"/>
+                <field name="overhead_type_id"/>
+                <field name="cost_category"/>
+                <field name="quantity"/>
+                <field name="unit_cost" widget="monetary"/>
+                <field name="total_cost" widget="monetary" sum="Total Overhead Cost"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- BOM Overhead Line Pivot View -->
+    <record id="view_mrp_bom_overhead_line_pivot" model="ir.ui.view">
+        <field name="name">mrp.bom.overhead.line.pivot</field>
+        <field name="model">mrp.bom.overhead.line</field>
+        <field name="arch" type="xml">
+            <pivot string="BOM Overhead Details Analysis">
+                <field name="bom_id" type="row"/>
+                <field name="overhead_type_id" type="col"/>
+                <field name="total_cost" type="measure"/>
+            </pivot>
+        </field>
+    </record>
+
+    <!-- BOM Overhead Line Graph View -->
+    <record id="view_mrp_bom_overhead_line_graph" model="ir.ui.view">
+        <field name="name">mrp.bom.overhead.line.graph</field>
+        <field name="model">mrp.bom.overhead.line</field>
+        <field name="arch" type="xml">
+            <graph string="BOM Overhead Analysis" type="bar">
+                <field name="overhead_type_id"/>
+                <field name="total_cost" type="measure"/>
+            </graph>
+        </field>
+    </record>
+
+    <!-- BOM Overhead Details Action -->
+    <record id="action_mrp_bom_overhead_details" model="ir.actions.act_window">
+        <field name="name">BOM Overhead Details</field>
+        <field name="res_model">mrp.bom.overhead.line</field>
+        <field name="view_mode">tree,pivot,graph</field>
+        <field name="context">{'search_default_groupby_bom': 1}</field>
+    </record>
+
+
+    <!-- MRP Overhead Line List View -->
+    <record id="view_mrp_production_overhead_line_tree" model="ir.ui.view">
+        <field name="name">mrp.production.overhead.line.list</field>
+        <field name="model">mrp.production.overhead.line</field>
+        <field name="arch" type="xml">
+            <tree string="MRP Overhead Details">
+                <field name="production_id"/>
+                <field name="product_id"/>
+                <field name="overhead_type_id"/>
+                <field name="cost_category"/>
+                <field name="planned_qty"/>
+                <field name="actual_qty"/>
+                <field name="unit_cost"/>
+                <field name="planned_cost" widget="monetary" sum="Total Planned Cost"/>
+                <field name="actual_cost" widget="monetary" sum="Total Actual Cost"/>
+                <field name="cost_deviation" widget="monetary" sum="Total Variance"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- MRP Overhead Line Pivot View -->
+    <record id="view_mrp_production_overhead_line_pivot" model="ir.ui.view">
+        <field name="name">mrp.production.overhead.line.pivot</field>
+        <field name="model">mrp.production.overhead.line</field>
+        <field name="arch" type="xml">
+            <pivot string="MRP Overhead Analysis">
+                <field name="production_id" type="row"/>
+                <field name="overhead_type_id" type="col"/>
+                <field name="actual_cost" type="measure"/>
+                <field name="cost_deviation" type="measure"/>
+            </pivot>
+        </field>
+    </record>
+
+    <!-- MRP Overhead Line Graph View -->
+    <record id="view_mrp_production_overhead_line_graph" model="ir.ui.view">
+        <field name="name">mrp.production.overhead.line.graph</field>
+        <field name="model">mrp.production.overhead.line</field>
+        <field name="arch" type="xml">
+            <graph string="MRP Overhead Cost Graph" type="bar">
+                <field name="overhead_type_id"/>
+                <field name="actual_cost" type="measure"/>
+            </graph>
+        </field>
+    </record>
+
+    <!-- MRP Overhead Details Action -->
+    <record id="action_mrp_production_overhead_details" model="ir.actions.act_window">
+        <field name="name">MRP Overhead Details</field>
+        <field name="res_model">mrp.production.overhead.line</field>
+        <field name="view_mode">tree,pivot,graph</field>
+        <field name="context">{'search_default_groupby_production': 1}</field>
+    </record>
+
+
+    <!-- Stock Kit Picking Line List View -->
+    <record id="view_stock_kit_picking_line_tree" model="ir.ui.view">
+        <field name="name">stock.kit.picking.line.list</field>
+        <field name="model">stock.kit.picking.line</field>
+        <field name="arch" type="xml">
+            <tree string="Stock Kit Picking Analysis">
+                <field name="picking_id"/>
+                <field name="product_id"/>
+                <field name="demand_qty"/>
+                <field name="delivered_qty"/>
+                <field name="unit_price" widget="monetary"/>
+                <field name="delivered_price" widget="monetary" sum="Total Delivered Value"/>
+                <field name="qty_deviation"/>
+                <field name="price_deviation" widget="monetary"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Stock Kit Picking Line Pivot View -->
+    <record id="view_stock_kit_picking_line_pivot" model="ir.ui.view">
+        <field name="name">stock.kit.picking.line.pivot</field>
+        <field name="model">stock.kit.picking.line</field>
+        <field name="arch" type="xml">
+            <pivot string="Kit Delivery Analysis">
+                <field name="picking_id" type="row"/>
+                <field name="product_id" type="col"/>
+                <field name="delivered_price" type="measure"/>
+            </pivot>
+        </field>
+    </record>
+
+    <!-- Stock Kit Picking Line Graph View -->
+    <record id="view_stock_kit_picking_line_graph" model="ir.ui.view">
+        <field name="name">stock.kit.picking.line.graph</field>
+        <field name="model">stock.kit.picking.line</field>
+        <field name="arch" type="xml">
+            <graph string="Kit Picking Graph" type="bar">
+                <field name="product_id"/>
+                <field name="delivered_price" type="measure"/>
+            </graph>
+        </field>
+    </record>
+
+    <!-- Stock Kit Picking Action -->
+    <record id="action_stock_kit_picking_analysis" model="ir.actions.act_window">
+        <field name="name">Stock Kit Picking</field>
+        <field name="res_model">stock.kit.picking.line</field>
+        <field name="view_mode">tree,pivot,graph</field>
+    </record>
+</odoo>

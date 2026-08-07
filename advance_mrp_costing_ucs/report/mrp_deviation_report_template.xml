@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="report_mrp_deviation">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="doc">
+                <t t-call="web.external_layout">
+                    <div class="page">
+                        <h2 class="text-center mb-4">MRP Deviation Report (Actual vs. Planned)</h2>
+                        
+                        <div class="row mb-3">
+                            <div class="col-6">
+                                <strong>MO Reference:</strong> <span t-field="doc.name"/><br/>
+                                <strong>Product:</strong> <span t-field="doc.product_id.display_name"/>
+                            </div>
+                            <div class="col-6 text-end">
+                                <strong>Planned Quantity:</strong> <span t-field="doc.product_qty"/><br/>
+                                <strong>Produced Quantity:</strong> <span t-field="doc.qty_producing"/>
+                            </div>
+                        </div>
+
+                        <table class="table table-bordered table-sm mt-4">
+                            <thead>
+                                <tr class="table-light">
+                                    <th>Cost Category</th>
+                                    <th class="text-end">Planned Cost</th>
+                                    <th class="text-end">Actual Cost</th>
+                                    <th class="text-end">Variance (Deviation)</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Material Costs</td>
+                                    <td class="text-end"><span t-field="doc.total_planned_material_cost" t-options='{"widget": "monetary", "display_currency": doc.company_id.currency_id}'/></td>
+                                    <td class="text-end"><span t-field="doc.total_actual_material_cost" t-options='{"widget": "monetary", "display_currency": doc.company_id.currency_id}'/></td>
+                                    <td class="text-end">
+                                        <span t-esc="doc.total_actual_material_cost - doc.total_planned_material_cost" t-options='{"widget": "monetary", "display_currency": doc.company_id.currency_id}'/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Overhead Costs</td>
+                                    <td class="text-end"><span t-field="doc.total_planned_overhead_cost" t-options='{"widget": "monetary", "display_currency": doc.company_id.currency_id}'/></td>
+                                    <td class="text-end"><span t-field="doc.total_actual_overhead_cost" t-options='{"widget": "monetary", "display_currency": doc.company_id.currency_id}'/></td>
+                                    <td class="text-end">
+                                        <span t-esc="doc.total_actual_overhead_cost - doc.total_planned_overhead_cost" t-options='{"widget": "monetary", "display_currency": doc.company_id.currency_id}'/>
+                                    </td>
+                                </tr>
+                                <tr class="fw-bold table-secondary">
+                                    <td>Total Production Cost</td>
+                                    <td class="text-end"><span t-field="doc.total_planned_production_cost" t-options='{"widget": "monetary", "display_currency": doc.company_id.currency_id}'/></td>
+                                    <td class="text-end"><span t-field="doc.total_actual_production_cost" t-options='{"widget": "monetary", "display_currency": doc.company_id.currency_id}'/></td>
+                                    <td class="text-end"><span t-field="doc.total_cost_variance" t-options='{"widget": "monetary", "display_currency": doc.company_id.currency_id}'/></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+</odoo>
