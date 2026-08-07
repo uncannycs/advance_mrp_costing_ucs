@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_picking_form_inherit_kit_overhead" model="ir.ui.view">
+        <field name="name">stock.picking.form.inherit.kit.overhead</field>
+        <field name="model">stock.picking</field>
+        <field name="inherit_id" ref="stock.view_picking_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//header" position="inside">
+                <button name="action_update_kit_qty" string="Update Quantity Of Kit" type="object" class="btn-primary" invisible="not is_kit_picking"/>
+                <button name="action_print_kit_delivery_slip" string="Print Kit Delivery Slip" type="object" class="btn-secondary" invisible="not is_kit_picking"/>
+            </xpath>
+
+            <xpath expr="//div[@name='button_box']" position="inside">
+                <button name="action_view_kit_product_moves" type="object" class="oe_stat_button" icon="fa-book" invisible="not is_kit_picking">
+                    <field name="kit_product_move_count" widget="statinfo" string="Kit Product Moves"/>
+                </button>
+                <button name="action_view_bom_overhead_moves" type="object" class="oe_stat_button" icon="fa-money" invisible="not is_kit_picking">
+                    <field name="bom_overhead_move_count" widget="statinfo" string="Overhead Moves"/>
+                </button>
+            </xpath>
+
+            <xpath expr="//notebook" position="inside">
+                <page string="Kit Picking" name="kit_picking" invisible="not is_kit_picking">
+                    <field name="is_kit_picking" invisible="1"/>
+                    <field name="kit_picking_line_ids">
+                        <list editable="bottom">
+                            <field name="product_id"/>
+                            <field name="demand_qty"/>
+                            <field name="delivered_qty"/>
+                            <field name="unit_price" widget="monetary"/>
+                            <field name="delivered_price" widget="monetary"/>
+                            <field name="qty_deviation"/>
+                            <field name="price_deviation" widget="monetary"/>
+                        </list>
+                    </field>
+                </page>
+            </xpath>
+        </field>
+    </record>
+</odoo>

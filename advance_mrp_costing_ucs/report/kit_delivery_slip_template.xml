@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="report_kit_delivery">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="doc">
+                <t t-call="web.external_layout">
+                    <div class="page">
+                        <h2 class="text-center mb-4">Kit Delivery Slip</h2>
+                        
+                        <div class="row mb-3">
+                            <div class="col-6">
+                                <strong>Delivery Reference:</strong> <span t-field="doc.name"/><br/>
+                                <strong>Customer:</strong> <span t-field="doc.partner_id.name"/><br/>
+                                <strong>Source Document:</strong> <span t-field="doc.origin"/>
+                            </div>
+                            <div class="col-6 text-end">
+                                <strong>Scheduled Date:</strong> <span t-field="doc.scheduled_date"/><br/>
+                                <strong>Status:</strong> <span t-field="doc.state"/>
+                            </div>
+                        </div>
+
+                        <h4 class="mt-4">Kit Products &amp; Components Breakdown</h4>
+                        <table class="table table-bordered table-sm">
+                            <thead>
+                                <tr class="table-light">
+                                    <th>Kit Component</th>
+                                    <th>Demanded Qty</th>
+                                    <th>Delivered Qty</th>
+                                    <th>Unit Price</th>
+                                    <th>Delivered Total</th>
+                                    <th>Qty Variance</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <t t-foreach="doc.kit_picking_line_ids" t-as="line">
+                                    <tr>
+                                        <td><span t-field="line.product_id.display_name"/></td>
+                                        <td><span t-field="line.demand_qty"/></td>
+                                        <td><span t-field="line.delivered_qty"/></td>
+                                        <td><span t-field="line.unit_price" t-options='{"widget": "monetary", "display_currency": doc.company_id.currency_id}'/></td>
+                                        <td><span t-field="line.delivered_price" t-options='{"widget": "monetary", "display_currency": doc.company_id.currency_id}'/></td>
+                                        <td><span t-field="line.qty_deviation"/></td>
+                                    </tr>
+                                </t>
+                            </tbody>
+                        </table>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+</odoo>

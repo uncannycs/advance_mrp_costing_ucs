@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="mrp_production_form_view_inherit_overhead" model="ir.ui.view">
+        <field name="name">mrp.production.form.inherit.overhead</field>
+        <field name="model">mrp.production</field>
+        <field name="inherit_id" ref="mrp.mrp_production_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//header" position="inside">
+                <button name="action_generate_overhead_entries" type="object" string="Post Overhead Journal Entry" class="btn-primary" invisible="state != 'done' or overhead_move_count &gt; 0"/>
+            </xpath>
+
+            <xpath expr="//div[@name='button_box']" position="inside">
+                <button name="action_view_main_product_moves" type="object" class="oe_stat_button" icon="fa-book">
+                    <field name="main_product_move_count" widget="statinfo" string="Main Product Entries"/>
+                </button>
+                <button name="action_view_overhead_moves" type="object" class="oe_stat_button" icon="fa-money">
+                    <field name="overhead_move_count" widget="statinfo" string="Overhead Entries"/>
+                </button>
+            </xpath>
+
+            <xpath expr="//notebook" position="inside">
+                <page string="Variable Overhead" name="variable_overhead">
+                    <field name="overhead_line_ids">
+                        <list editable="bottom">
+                            <field name="product_id" domain="[('type', '=', 'service')]"/>
+                            <field name="overhead_type_id"/>
+                            <field name="cost_category"/>
+                            <field name="planned_qty"/>
+                            <field name="actual_qty"/>
+                            <field name="unit_cost"/>
+                            <field name="planned_cost" widget="monetary"/>
+                            <field name="actual_cost" widget="monetary"/>
+                            <field name="cost_deviation" widget="monetary"/>
+                            <field name="move_id" readonly="1"/>
+                        </list>
+                    </field>
+                    <group class="oe_subtotal_footer oe_right">
+                        <field name="total_planned_overhead_cost" widget="monetary"/>
+                        <field name="total_actual_overhead_cost" widget="monetary"/>
+                    </group>
+                </page>
+
+                <page string="Costing Statistics" name="costing_statistics">
+                    <group>
+                        <group string="Planned vs. Actual Costs">
+                            <field name="total_planned_material_cost" widget="monetary"/>
+                            <field name="total_actual_material_cost" widget="monetary"/>
+                            <field name="total_planned_overhead_cost" widget="monetary"/>
+                            <field name="total_actual_overhead_cost" widget="monetary"/>
+                            <field name="total_planned_production_cost" class="oe_subtotal_footer_separator" widget="monetary"/>
+                            <field name="total_actual_production_cost" class="oe_subtotal_footer_separator" widget="monetary"/>
+                            <field name="total_cost_variance" widget="monetary" decoration-danger="total_cost_variance &gt; 0" decoration-success="total_cost_variance &lt;= 0"/>
+                        </group>
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+</odoo>
