@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="report_bom_overhead">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="doc">
+                <t t-call="web.external_layout">
+                    <div class="page">
+                        <h2 class="text-center mb-4">BOM Material &amp; Overhead Cost Report</h2>
+                        
+                        <div class="row mb-3">
+                            <div class="col-6">
+                                <strong>BOM Reference:</strong> <span t-field="doc.display_name"/><br/>
+                                <strong>Product:</strong> <span t-field="doc.product_tmpl_id.name"/><br/>
+                                <strong>Quantity:</strong> <span t-field="doc.product_qty"/> <span t-field="doc.product_uom_id.name"/>
+                            </div>
+                            <div class="col-6 text-end">
+                                <strong>Total Material Cost:</strong> <span t-field="doc.total_material_cost" t-options='{"widget": "monetary", "display_currency": doc.company_id.currency_id}'/><br/>
+                                <strong>Total Overhead Cost:</strong> <span t-field="doc.total_overhead_cost" t-options='{"widget": "monetary", "display_currency": doc.company_id.currency_id}'/><br/>
+                                <h4><strong>Grand Total Cost:</strong> <span t-field="doc.total_bom_cost" t-options='{"widget": "monetary", "display_currency": doc.company_id.currency_id}'/></h4>
+                            </div>
+                        </div>
+
+                        <h4 class="mt-4">Components (Raw Materials)</h4>
+                        <table class="table table-bordered table-sm">
+                            <thead>
+                                <tr class="table-light">
+                                    <th>Component</th>
+                                    <th>Quantity</th>
+                                    <th>Unit Cost</th>
+                                    <th class="text-end">Subtotal Cost</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <t t-foreach="doc.bom_line_ids" t-as="line">
+                                    <tr>
+                                        <td><span t-field="line.product_id.display_name"/></td>
+                                        <td><span t-field="line.product_qty"/> <span t-field="line.product_uom_id.name"/></td>
+                                        <td><span t-field="line.product_id.standard_price" t-options='{"widget": "monetary", "display_currency": doc.company_id.currency_id}'/></td>
+                                        <td class="text-end">
+                                            <span t-esc="line.product_qty * line.product_id.standard_price" t-options='{"widget": "monetary", "display_currency": doc.company_id.currency_id}'/>
+                                        </td>
+                                    </tr>
+                                </t>
+                            </tbody>
+                        </table>
+
+                        <h4 class="mt-4">Variable &amp; Fixed Overheads</h4>
+                        <table class="table table-bordered table-sm">
+                            <thead>
+                                <tr class="table-light">
+                                    <th>Overhead Item</th>
+                                    <th>Overhead Type</th>
+                                    <th>Basis</th>
+                                    <th>Quantity / %</th>
+                                    <th>Unit Rate</th>
+                                    <th class="text-end">Total Overhead</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <t t-foreach="doc.overhead_line_ids" t-as="ovh">
+                                    <tr>
+                                        <td><span t-field="ovh.product_id.display_name"/></td>
+                                        <td><span t-field="ovh.overhead_type_id.name"/></td>
+                                        <td><span t-field="ovh.cost_category"/></td>
+                                        <td><span t-field="ovh.quantity"/></td>
+                                        <td><span t-field="ovh.unit_cost" t-options='{"widget": "monetary", "display_currency": doc.company_id.currency_id}'/></td>
+                                        <td class="text-end"><span t-field="ovh.total_cost" t-options='{"widget": "monetary", "display_currency": doc.company_id.currency_id}'/></td>
+                                    </tr>
+                                </t>
+                            </tbody>
+                        </table>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+</odoo>

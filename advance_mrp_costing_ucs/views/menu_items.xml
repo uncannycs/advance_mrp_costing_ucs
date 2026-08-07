@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Manufacturing -> Configuration -> Overhead Type -->
+    <menuitem id="menu_mrp_overhead_type"
+              name="Overhead Types"
+              parent="mrp.menu_mrp_configuration"
+              action="action_mrp_overhead_type"
+              sequence="50"/>
+
+    <!-- Manufacturing -> Operations -> BOM Overhead Details -->
+    <menuitem id="menu_mrp_bom_overhead_details"
+              name="BOM Overhead Details"
+              parent="mrp.menu_mrp_manufacturing"
+              action="action_mrp_bom_overhead_details"
+              sequence="80"/>
+
+    <!-- Manufacturing -> Operations -> MRP Overhead Details -->
+    <menuitem id="menu_mrp_production_overhead_details"
+              name="MRP Overhead Details"
+              parent="mrp.menu_mrp_manufacturing"
+              action="action_mrp_production_overhead_details"
+              sequence="85"/>
+
+    <!-- Manufacturing -> Operations -> Stock Kit Picking -->
+    <menuitem id="menu_stock_kit_picking_analysis"
+              name="Stock Kit Picking"
+              parent="mrp.menu_mrp_manufacturing"
+              action="action_stock_kit_picking_analysis"
+              sequence="90"/>
+</odoo>

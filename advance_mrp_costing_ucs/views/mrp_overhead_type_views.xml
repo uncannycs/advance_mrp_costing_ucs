@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Overhead Type Tree View -->
+    <record id="view_mrp_overhead_type_tree" model="ir.ui.view">
+        <field name="name">mrp.overhead.type.list</field>
+        <field name="model">mrp.overhead.type</field>
+        <field name="arch" type="xml">
+            <list string="Overhead Cost Types">
+                <field name="code"/>
+                <field name="name"/>
+                <field name="expense_account_id"/>
+                <field name="credit_account_id"/>
+                <field name="journal_id"/>
+                <field name="product_count"/>
+                <field name="bom_count"/>
+                <field name="mo_count"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- Overhead Type Form View -->
+    <record id="view_mrp_overhead_type_form" model="ir.ui.view">
+        <field name="name">mrp.overhead.type.form</field>
+        <field name="model">mrp.overhead.type</field>
+        <field name="arch" type="xml">
+            <form string="Overhead Cost Type">
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button name="action_view_products" type="object" class="oe_stat_button" icon="fa-cubes">
+                            <field name="product_count" widget="statinfo" string="Overhead Items"/>
+                        </button>
+                        <button name="action_view_boms" type="object" class="oe_stat_button" icon="fa-flask">
+                            <field name="bom_count" widget="statinfo" string="BOMs"/>
+                        </button>
+                        <button name="action_view_mos" type="object" class="oe_stat_button" icon="fa-cogs">
+                            <field name="mo_count" widget="statinfo" string="Manufacturing Orders"/>
+                        </button>
+                    </div>
+                    <div class="oe_title">
+                        <label for="name" string="Overhead Name"/>
+                        <h1>
+                            <field name="name" placeholder="e.g. Factory Electricity, Machine Tooling, Direct Labor"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group string="Basic Information">
+                            <field name="code"/>
+                            <field name="description"/>
+                        </group>
+                        <group string="Accounting Configuration">
+                            <field name="expense_account_id" required="1"/>
+                            <field name="credit_account_id" required="1"/>
+                            <field name="journal_id" required="1"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Assigned Service Products">
+                            <field name="product_ids">
+                                <list edit="true" create="true">
+                                    <field name="default_code"/>
+                                    <field name="name"/>
+                                    <field name="standard_price" string="Cost Rate"/>
+                                    <field name="uom_id"/>
+                                </list>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Overhead Type Action -->
+    <record id="action_mrp_overhead_type" model="ir.actions.act_window">
+        <field name="name">Overhead Types</field>
+        <field name="res_model">mrp.overhead.type</field>
+        <field name="view_mode">list,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create your first Overhead Cost Type!
+            </p>
+            <p>
+                Define categories for manufacturing overhead costs (e.g. Labor, Energy, Subcontracting) and map them to GL Accounts.
+            </p>
+        </field>
+    </record>
+</odoo>

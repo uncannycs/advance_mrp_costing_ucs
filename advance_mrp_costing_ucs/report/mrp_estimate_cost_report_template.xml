@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="report_mrp_estimate_cost">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="doc">
+                <t t-call="web.external_layout">
+                    <div class="page">
+                        <h2 class="text-center mb-4">MRP Estimate Cost Report</h2>
+                        
+                        <div class="row mb-3">
+                            <div class="col-6">
+                                <strong>MO Reference:</strong> <span t-field="doc.name"/><br/>
+                                <strong>Product:</strong> <span t-field="doc.product_id.display_name"/><br/>
+                                <strong>Planned Quantity:</strong> <span t-field="doc.product_qty"/> <span t-field="doc.product_uom_id.name"/>
+                            </div>
+                            <div class="col-6 text-end">
+                                <strong>Estimated Material Cost:</strong> <span t-field="doc.total_planned_material_cost" t-options='{"widget": "monetary", "display_currency": doc.company_id.currency_id}'/><br/>
+                                <strong>Estimated Overhead Cost:</strong> <span t-field="doc.total_planned_overhead_cost" t-options='{"widget": "monetary", "display_currency": doc.company_id.currency_id}'/><br/>
+                                <h4><strong>Total Estimated Cost:</strong> <span t-field="doc.total_planned_production_cost" t-options='{"widget": "monetary", "display_currency": doc.company_id.currency_id}'/></h4>
+                            </div>
+                        </div>
+
+                        <h4 class="mt-4">Estimated Material Components</h4>
+                        <table class="table table-bordered table-sm">
+                            <thead>
+                                <tr class="table-light">
+                                    <th>Material Component</th>
+                                    <th>To Consume</th>
+                                    <th>Unit Price</th>
+                                    <th class="text-end">Estimated Cost</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <t t-foreach="doc.move_raw_ids" t-as="move">
+                                    <tr>
+                                        <td><span t-field="move.product_id.display_name"/></td>
+                                        <td><span t-field="move.product_uom_qty"/> <span t-field="move.product_uom.name"/></td>
+                                        <td><span t-field="move.product_id.standard_price" t-options='{"widget": "monetary", "display_currency": doc.company_id.currency_id}'/></td>
+                                        <td class="text-end">
+                                            <span t-esc="move.product_uom_qty * move.product_id.standard_price" t-options='{"widget": "monetary", "display_currency": doc.company_id.currency_id}'/>
+                                        </td>
+                                    </tr>
+                                </t>
+                            </tbody>
+                        </table>
+
+                        <h4 class="mt-4">Estimated Overhead Items</h4>
+                        <table class="table table-bordered table-sm">
+                            <thead>
+                                <tr class="table-light">
+                                    <th>Overhead Item</th>
+                                    <th>Category</th>
+                                    <th>Planned Qty</th>
+                                    <th>Unit Cost</th>
+                                    <th class="text-end">Estimated Overhead</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <t t-foreach="doc.overhead_line_ids" t-as="line">
+                                    <tr>
+                                        <td><span t-field="line.product_id.display_name"/></td>
+                                        <td><span t-field="line.cost_category"/></td>
+                                        <td><span t-field="line.planned_qty"/></td>
+                                        <td><span t-field="line.unit_cost" t-options='{"widget": "monetary", "display_currency": doc.company_id.currency_id}'/></td>
+                                        <td class="text-end"><span t-field="line.planned_cost" t-options='{"widget": "monetary", "display_currency": doc.company_id.currency_id}'/></td>
+                                    </tr>
+                                </t>
+                            </tbody>
+                        </table>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+</odoo>
