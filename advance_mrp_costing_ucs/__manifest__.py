@@ -26,7 +26,7 @@ Key Features:
     'license': 'LGPL-3',
     'price': 60,
     'currency': 'USD',
-    'images': ['static/description/custom_banner.png'],
+    'images': ['static/description/banner.gif'],
     'depends': [
         'mrp',
         'stock',
