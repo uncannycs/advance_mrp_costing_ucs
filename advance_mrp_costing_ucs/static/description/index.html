@@ -2086,15 +2086,13 @@
                                             class="accordion-button rounded-4 fw-bold text-dark collapsed cursor-pointer"
                                             data-bs-target="#collapseOne" data-bs-toggle="collapse"
                                             style="background-color: #f8f9fa">
-                                            1. Is this module compatible with Odoo Enterprise?
+                                            1. How does Advance MRP Costing capture and allocate manufacturing overhead costs?
                                         </div>
                                     </h2>
                                     <div aria-labelledby="headingOne" class="accordion-collapse collapse"
                                         data-bs-parent="#faqAccordion" id="collapseOne">
-                                        <div class="accordion-body text-muted">
-                                            Yes, absolutely! The module is fully compatible with both Odoo Community
-                                            and
-                                            Odoo Enterprise editions.
+                                        <div class="accordion-body text-muted" style="line-height: 1.7">
+                                            The module allows you to define specific manufacturing overhead cost types (such as direct labor, electricity, machine wear, tooling, and facility maintenance) and assign them directly to Bills of Materials (BOM) or Manufacturing Orders. Costs are calculated dynamically during order execution and allocated into finished product valuation.
                                         </div>
                                     </div>
                                 </div>
@@ -2106,15 +2104,13 @@
                                             class="accordion-button rounded-4 fw-bold text-dark collapsed cursor-pointer"
                                             data-bs-target="#collapseTwo" data-bs-toggle="collapse"
                                             style="background-color: #f8f9fa">
-                                            2. How does the module handle variable manufacturing overheads?
+                                            2. What calculation bases are supported for variable and extra overhead costs in Bills of Materials (BOM)?
                                         </div>
                                     </h2>
                                     <div aria-labelledby="headingTwo" class="accordion-collapse collapse"
                                         data-bs-parent="#faqAccordion" id="collapseTwo">
-                                        <div class="accordion-body text-muted">
-                                            You can define overhead costs as Fixed, Per-Unit, or Percentage-based on the
-                                            BOM. During Manufacturing Order execution, these extra costs are precisely
-                                            applied to your finished goods.
+                                        <div class="accordion-body text-muted" style="line-height: 1.7">
+                                            Overheads can be defined using flexible calculation modes including Fixed Amount per order, Per-Unit produced cost, or Percentage-based overhead on component material values, allowing accurate modeling of complex shop floor expenses.
                                         </div>
                                     </div>
                                 </div>
@@ -2126,15 +2122,13 @@
                                             class="accordion-button rounded-4 fw-bold text-dark collapsed cursor-pointer"
                                             data-bs-target="#collapseThree" data-bs-toggle="collapse"
                                             style="background-color: #f8f9fa">
-                                            3. Are General Ledger journal entries created automatically?
+                                            3. How are overhead categories configured with accounting accounts?
                                         </div>
                                     </h2>
                                     <div aria-labelledby="headingThree" class="accordion-collapse collapse"
                                         data-bs-parent="#faqAccordion" id="collapseThree">
-                                        <div class="accordion-body text-muted">
-                                            Yes! When an MO is marked as Done, the system automatically creates and
-                                            posts Debit and Credit journal moves to track the exact manufacturing
-                                            overhead costs, improving your financial accuracy.
+                                        <div class="accordion-body text-muted" style="line-height: 1.7">
+                                            Each overhead type is configured with specific Debit (Expense/Work-in-Progress) and Credit (Overhead Absorption/Accrual) General Ledger accounts. This ensures full integration with financial accounting without manual journal entries.
                                         </div>
                                     </div>
                                 </div>
@@ -2146,15 +2140,85 @@
                                             class="accordion-button rounded-4 fw-bold text-dark collapsed cursor-pointer"
                                             data-bs-target="#collapseFour" data-bs-toggle="collapse"
                                             style="background-color: #f8f9fa">
-                                            4. Does the module support Unbuild reversals?
+                                            4. How does real-time overhead cost absorption work on Manufacturing Orders (MO)?
                                         </div>
                                     </h2>
                                     <div aria-labelledby="headingFour" class="accordion-collapse collapse"
                                         data-bs-parent="#faqAccordion" id="collapseFour">
-                                        <div class="accordion-body text-muted">
-                                            Absolutely. When you process an Unbuild order in Odoo, the module computes
-                                            the relevant overhead cost reversals and applies the appropriate journal
-                                            entries, keeping inventory and accounting in balance.
+                                        <div class="accordion-body text-muted" style="line-height: 1.7">
+                                            When a Manufacturing Order is generated, standard overhead lines are automatically inherited from the BOM. Operations personnel can track actual overhead expenses on the MO line level prior to marking the order as Done.
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- FAQ 5 -->
+                                <div class="accordion-item border-0 mb-3 rounded-4 shadow-sm">
+                                    <h2 class="accordion-header" id="headingFive"
+                                        style="font-family: 'Montserrat', sans-serif">
+                                        <div aria-controls="collapseFive" aria-expanded="false"
+                                            class="accordion-button rounded-4 fw-bold text-dark collapsed cursor-pointer"
+                                            data-bs-target="#collapseFive" data-bs-toggle="collapse"
+                                            style="background-color: #f8f9fa">
+                                            5. Are General Ledger journal entries created automatically when a Manufacturing Order is marked Done?
+                                        </div>
+                                    </h2>
+                                    <div aria-labelledby="headingFive" class="accordion-collapse collapse"
+                                        data-bs-parent="#faqAccordion" id="collapseFive">
+                                        <div class="accordion-body text-muted" style="line-height: 1.7">
+                                            Yes! Upon marking an MO as Done, the module generates balanced accounting entries for all overhead lines, debiting work-in-progress/inventory valuation and crediting overhead absorption accounts.
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- FAQ 6 -->
+                                <div class="accordion-item border-0 mb-3 rounded-4 shadow-sm">
+                                    <h2 class="accordion-header" id="headingSix"
+                                        style="font-family: 'Montserrat', sans-serif">
+                                        <div aria-controls="collapseSix" aria-expanded="false"
+                                            class="accordion-button rounded-4 fw-bold text-dark collapsed cursor-pointer"
+                                            data-bs-target="#collapseSix" data-bs-toggle="collapse"
+                                            style="background-color: #f8f9fa">
+                                            6. How does Kit Delivery Accounting work for kit product pickings and component quantity updates?
+                                        </div>
+                                    </h2>
+                                    <div aria-labelledby="headingSix" class="accordion-collapse collapse"
+                                        data-bs-parent="#faqAccordion" id="collapseSix">
+                                        <div class="accordion-body text-muted" style="line-height: 1.7">
+                                            The module includes a dedicated Kit Quantity Update wizard and delivery slip report. It computes individual component quantities required for kit products on picking operations and reflects component costs seamlessly in inventory pickings.
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- FAQ 7 -->
+                                <div class="accordion-item border-0 mb-3 rounded-4 shadow-sm">
+                                    <h2 class="accordion-header" id="headingSeven"
+                                        style="font-family: 'Montserrat', sans-serif">
+                                        <div aria-controls="collapseSeven" aria-expanded="false"
+                                            class="accordion-button rounded-4 fw-bold text-dark collapsed cursor-pointer"
+                                            data-bs-target="#collapseSeven" data-bs-toggle="collapse"
+                                            style="background-color: #f8f9fa">
+                                            7. What happens to manufacturing overheads and component costs during Unbuild Orders?
+                                        </div>
+                                    </h2>
+                                    <div aria-labelledby="headingSeven" class="accordion-collapse collapse"
+                                        data-bs-parent="#faqAccordion" id="collapseSeven">
+                                        <div class="accordion-body text-muted" style="line-height: 1.7">
+                                            When processing an Unbuild order, the module automatically calculates the reversal of extra manufacturing overhead costs and generates corresponding reversing journal entries, preventing inventory valuation distortion.
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- FAQ 8 -->
+                                <div class="accordion-item border-0 mb-3 rounded-4 shadow-sm">
+                                    <h2 class="accordion-header" id="headingEight"
+                                        style="font-family: 'Montserrat', sans-serif">
+                                        <div aria-controls="collapseEight" aria-expanded="false"
+                                            class="accordion-button rounded-4 fw-bold text-dark collapsed cursor-pointer"
+                                            data-bs-target="#collapseEight" data-bs-toggle="collapse"
+                                            style="background-color: #f8f9fa">
+                                            8. What detailed reporting tools are provided to analyze overhead cost deviations?
+                                        </div>
+                                    </h2>
+                                    <div aria-labelledby="headingEight" class="accordion-collapse collapse"
+                                        data-bs-parent="#faqAccordion" id="collapseEight">
+                                        <div class="accordion-body text-muted" style="line-height: 1.7">
+                                            The module includes comprehensive PDF reports for BOM Overhead Details, Manufacturing Overhead Variance Reports, and Kit Picking Slips to assist production managers and cost accountants in auditing cost accuracy.
                                         </div>
                                     </div>
                                 </div>
